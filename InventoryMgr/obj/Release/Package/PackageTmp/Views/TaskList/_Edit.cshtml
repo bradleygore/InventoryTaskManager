@@ -1,0 +1,31 @@
+﻿@model InventoryMgr.Models.TaskList
+
+<h2>Edit Task List</h2>
+@using (Html.BeginForm("", "api/TaskLists", FormMethod.Post, new { id = "frmEditTaskList", @data_bind = "submit: updateTaskList" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>TaskList</legend>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TaskName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TaskName)
+            @Html.ValidationMessageFor(model => model.TaskName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsComplete)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.IsComplete)
+            @Html.ValidationMessageFor(model => model.IsComplete)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+            <input type="button" value="Cancel" id="btnCancelEditTaskList" />
+        </p>
+    </fieldset>
+}

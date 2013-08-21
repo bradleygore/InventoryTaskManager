@@ -1,0 +1,60 @@
+﻿@model InventoryMgr.Models.ViewModels.InventoryItemEditModel
+
+<h2>Edit Inventory Item</h2>
+@using (Html.BeginForm("", "api/InventoryItems", FormMethod.Post, new { id = "frmEditItem", @data_bind = "submit: updateItem" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>InventoryItemEditModel</legend>
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.ItemLastUpdated, new { Value = DateTime.Today.ToShortDateString() })
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ItemName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ItemName)
+            @Html.ValidationMessageFor(model => model.ItemName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ItemDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ItemDescription)
+            @Html.ValidationMessageFor(model => model.ItemDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryList)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.InventoryCategoryId, Model.CategoryList)
+            @Html.ValidationMessageFor(model => model.CategoryList)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ItemQuantity)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ItemQuantity, new { type = "number" })
+            @Html.ValidationMessageFor(model => model.ItemQuantity)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MeasurementsList)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.InventoryQtyMeasurementsId, Model.MeasurementsList)
+            @Html.ValidationMessageFor(model => model.MeasurementsList)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+            <input type="button" value="Cancel" id="btnCancelItemEdit" />
+        </p>
+    </fieldset>
+}

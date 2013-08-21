@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="AuthConnection-Web.config Connection String" description="AuthConnection Connection String used in web.config by the application to access the database." defaultvalue="Data Source=GUARDIAN-WEB;User ID=InventoryUser;Password=1nV3nT0ri?;Initial Catalog=InventoryAuth;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\inetpub\\wwwroot\\InventoryMgr\\InventoryMgr\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AuthConnection']/@connectionString" />
+  </parameter>
+  <parameter name="EntitiesConnection-Web.config Connection String" description="EntitiesConnection Connection String used in web.config by the application to access the database." defaultvalue="Data Source=GUARDIAN-WEB;User ID=InventoryUser;Password=1nV3nT0ri?;Initial Catalog=InventoryMgmt;MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\inetpub\\wwwroot\\InventoryMgr\\InventoryMgr\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='EntitiesConnection']/@connectionString" />
+  </parameter>
+</parameters>

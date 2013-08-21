@@ -1,0 +1,37 @@
+﻿@model InventoryMgr.Models.InventoryCategory
+
+<h2>Edit Category</h2>
+@using (Html.BeginForm("", "api/Categories", FormMethod.Post, new { id = "frmEditCategory", @data_bind = "submit: updateCategory" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>InventoryCategory</legend>
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.IsGlobal)
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CategoryName)
+            @Html.ValidationMessageFor(model => model.CategoryName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CategoryDescription)
+            @Html.ValidationMessageFor(model => model.CategoryDescription)
+        </div>
+                
+        <p>
+            <input type="submit" value="Save" />
+            <input type="button" value="Cancel" id="btnCancelCategoryEdit" />
+        </p>
+    </fieldset>
+}

@@ -1,0 +1,112 @@
+﻿@*INVENTORY INDEX PAGE*@
+<p id="nav2">    
+    <input type="button" id="btnAddNewInventory" value="New Item" data-bind="click: $root.getItemCreateForm" />
+    <input type="button" id="btnAddNewCategory" value="New Category" />
+    <input type="button" id="btnQtyMeasurements" value="Quantity Measurements" />
+</p>
+<div id="inventoryItemsContainer" class="autoHideable">
+<h2>Inventory Items by Category</h2>
+<input type="checkbox" id="chkShowEmptyCategories" data-bind="checked: $root.showEmptyCategories" /> View categories with no items
+<label class="zeroItems" data-bind="visible: $root.items().length < 1">You currently have no Inventory Items</label>
+<div id="allInventoryItems" data-bind="foreach: categories">
+    <div class="categoryContent" data-bind="visible: ($root.showEmptyCategories() || $root.itemsInCategory($data).length > 0)">
+        <label class="categoryHeading" data-bind="text: CategoryName">
+        </label>
+        <a class="categoryLink" href="#" data-bind="click: $root.getCategoryEditForm, visible: !IsGlobal">Edit Category</a>
+        <a class="categoryLink" href="#" data-bind="click: $root.removeCategory, visible: $root.itemsInCategory($data).length == 0 && !IsGlobal">
+            Delete Category</a>
+        <label class="categoryDescription" data-bind="text: CategoryDescription">
+        </label>
+        <div class="categoryNoItems" data-bind="visible: $root.itemsInCategory($data).length == 0">
+            No items for this category.
+        </div>
+        <table data-bind="visible: $root.itemsInCategory($data).length > 0">
+            <thead>
+                <tr>
+                    <th class="name">
+                        Name
+                    </th>
+                    <th class="quantity" colspan="2">
+                        Qty
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: $root.itemsInCategory($data)">
+                <!-- ko if: InventoryCategory.Id === $parent.Id -->
+                <tr>
+                    <td data-bind="text: ItemName">
+                    </td>
+                    <td class="quantity" data-bind="text: ItemQuantity.toFixed(2)">
+                    </td>
+                    <td class="measurement" data-bind="text: InventoryQtyMeasurements.UnitOfMeasure">
+                    </td>
+                    <td>
+                        <a href="#" data-bind="click: $root.getItemEditForm">Edit</a> 
+                        &nbsp;&nbsp; 
+                        <a href="#" data-bind="click: $root.removeItem">Delete</a>
+                    </td>
+                </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+        <br />
+    </div>
+</div>
+</div>
+
+<!-- DIVS FOR NEW/EDIT ITEM FORMS -->
+<div id="addNewFormDiv" hidden class="autoHideable">
+
+</div>
+<div id="editFormDiv" hidden class="autoHideable">
+</div>
+<!-- DIVS FOR NEW/EDIT CATEGORY FORMS -->
+<div id="addNewCategoryDiv" hidden class="autoHideable">
+    @{ Html.RenderPartial("_CreateCategory"); }
+</div>
+<div id="editCategoryDiv" hidden class="autoHideable">
+</div>
+<!-- DIVS FOR NEW/EDIT CATEGORY Qty Measurements -->
+<div id="measurementsContainer" hidden>
+<h2>Manage Inventory Quantity Measurements</h2> 
+    <div id="measurementsMain">
+        <table id="allMeasurements">
+            <thead>
+                <tr>
+                    <th>Measurement</th>
+                </tr>
+            </thead>        
+            <tbody data-bind="foreach: measurements">
+                <tr>
+                    <td data-bind="text: UnitOfMeasure"></td>
+                    <td data-bind="visible: !IsGlobal">
+                        <a href="#" data-bind="click: $root.getMeasurementEditForm">Edit</a>&nbsp;&nbsp;
+                        <a href="#" data-bind="visible: $root.itemsUsingMeasurement($data).length == 0, click: $root.removeMeasurement">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <input type="button" id="btnAddNewMeasurement" value="New Measurement" />
+        <input type="button" id="btnCloseMeasurements" value="Back to Inventory" /> 
+    </div>
+    <div id="addNewMeasurementDiv" hidden class="autoHideable">
+        <h4>Add New Quantity Measurement</h4>
+        <br />
+        @{ Html.RenderPartial("_CreateQtyMeasurement"); }
+    </div>
+    <div id="editMeasurementDiv" hidden class="autoHideable">
+    </div>
+</div>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/knockout-2.1.0.js"></script>
+    <script type="text/javascript">
+        var currentUserId = @ViewBag.UserId; //Globally accessible variable to be used by knockout
+    </script>
+    <script type="text/javascript" src="~/Scripts/inventoryViewModel.js"></script>
+}
+<link href="../../Content/MyInventory.css" rel="stylesheet" type="text/css" />

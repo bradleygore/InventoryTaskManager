@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="http://GUARDIAN-WEB:80/MsDeployAgentService" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="InventoryManager" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="GUARDIAN-WEB" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="GUARDIAN-WEB\Administrator" savePWD="False" userPWD="" SelectedForPublish="True" />
+</publishData>
