@@ -1,0 +1,152 @@
+﻿input[type=button], input[type=submit]
+{
+    -moz-box-shadow:2px 3px 5px #888;
+    -webkit-box-shadow:2px 3px 5px #888;
+    box-shadow:2px 3px 5px #888;
+    border:1px solid #888;
+    border-radius:5px;
+}
+
+input[type=button]:hover, input[type=submit]:hover
+{
+    background: #333;
+    border:1 px solid #ED2438;
+    -moz-box-shadow:2px 3px 5px #ED2438;
+    -webkit-box-shadow:2px 3px 5px #ED2438;
+    box-shadow:2px 3px 5px #ED2438;  
+    color:#ED2438;      
+}
+
+#inventoryItemsContainer label.zeroItems
+{
+    -moz-box-shadow:4px 6px 10px #888;
+    -webkit-box-shadow:4px 6px 10px #888;
+    box-shadow:4px 6px 10px #888;
+    padding:5px;
+    max-width:450px;
+    margin-top:5px;
+    border:1px solid #888;
+    border-radius:5px;
+}
+
+#allInventoryItems
+{
+    margin-top:10px;
+}
+
+#allInventoryItems div.categoryContent, #allMeasurements
+{
+    -moz-box-shadow:4px 6px 10px #888;
+    -webkit-box-shadow:4px 6px 10px #888;
+    box-shadow:4px 6px 10px #888;
+    max-width:450px;
+    margin-top:5px;
+    border:1px solid #888;
+    border-radius:5px;
+    background-color:#FFFFDB;
+}
+
+#allInventoryItems label.categoryHeading
+{
+    display:inline;
+    font-size:1.4em;
+    text-transform:uppercase;
+    padding-left: 5px;
+}
+
+#allInventoryItems label.categoryDescription
+{
+    margin-left:10px;
+    font-size:.85em;
+    color:#888;
+    font-weight:normal;
+}
+
+#allInventoryItems .categoryLink
+{
+    margin-left:15px;
+}
+
+#allInventoryItems .categoryNoItems
+{
+    width:88%;
+    max-width: 450px;
+    margin:10px auto 0 auto;
+    -moz-box-shadow: 4px 6px 10px #888;
+    -webkit-box-shadow: 4px 6px 10px #888;
+    -box-shadow: 4px 6px 10px #888;
+    border:1px solid #888;
+    padding:5px;
+    border-radius:5px;
+    background-color:#CDFFFF;
+}
+
+table 
+{
+    width: 90%;
+    -moz-box-shadow: 4px 6px 10px #888;
+    -webkit-box-shadow: 4px 6px 10px #888;
+    -box-shadow: 4px 6px 10px #888;
+    margin:10px auto 0 auto;
+    padding: 5px;
+    border:1px solid #888;
+    border-collapse: separate;
+    border-radius:5px;
+    background-color:#CDFFFF;
+}
+
+th
+{
+    padding:0;
+}
+
+th.quantity
+{
+    text-align:left;
+    padding-left:25px;
+} 
+
+th.name
+{
+    text-align:left;
+    padding-left:3px;
+}
+
+td
+{
+    padding: 0.5em 0 0.5em 0;
+}
+
+td.quantity
+{
+    padding:0;
+    text-align:right;
+    padding-right:3px;
+}
+
+td.measurement
+{
+    padding:0;   
+    min-width:50px; 
+}
+
+#measurementsMain
+{
+    max-width:450px;
+    margin-top:5px;
+}
+
+/****** VARIOUS INPUT FORMS ******/
+#addNewFormDiv, #editFormDiv, #addNewCategoryDiv, #editCategoryDiv, #addNewMeasurementDiv, #editMeasurementDiv
+{
+    -moz-box-shadow:4px 6px 10px #888;
+    -webkit-box-shadow:4px 6px 10px #888;
+    box-shadow:4px 6px 10px #888;
+    max-width:350px;
+    margin-top:5px;
+    border:1px solid #888;
+    padding:0 0 10px 10px;
+    border-radius:5px;
+    background-color:#FFFFDB;
+}
+

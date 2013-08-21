@@ -1,0 +1,63 @@
+﻿<p id="nav2">
+    <input type="button" id="btnAddNewTaskList" value="New Task List" />
+</p>
+
+<div id="tasklistsContainer" class="autoHideable">
+    <h2>All Tasklists</h2>
+    <input type="checkbox" id="chkShowCompletedTaskLists" data-bind="checked: $root.showCompletedTaskLists" /> View completed Task Lists 
+    @*<label data-bind="text: $root.showCompletedTaskLists()"></label>
+    <label data-bind="text: $root.incompleteTaskLists().length"></label>*@
+    <label class="noTaskLists" data-bind="visible: ($root.showCompletedTaskLists() != true && $root.incompleteTaskLists().length < 1) || $root.taskLists().length < 1">You currently do not have any open Task Lists</label>
+    <div data-bind="visible: ($root.showCompletedTaskLists() == true && $root.taskLists().length > 0) || $root.incompleteTaskLists().length > 0">
+        <div data-bind="foreach: taskLists">
+            <div class="singleList" data-bind="visible: ($root.showCompletedTaskLists() == true && IsComplete || !IsComplete)">
+                <p class="singleListName"><a href="#" data-bind="click: $root.getTaskListDetails, text: (TaskName.length > 40 ? TaskName.substr(0, 40) + '...' : TaskName)"></a></p>
+                <p class="singleListTaskCount"><label>Tasks: <span data-bind="text: (Tasks == null ? 0 : Tasks.length)"></span></label></p>
+                <p class="singleListStatus"><label>Status: <span data-bind="text: IsComplete ? 'Done' : 'Pending' "></span></label></p>
+                <p class="singleListActions">
+                    <a href="#" data-bind="click: $root.getTaskListEditForm">Edit</a>
+                    <span>|</span>
+                    <a href="#" data-bind="click: $root.changeTaskListStatus, text: IsComplete ? 'Un-complete' : 'Complete'"></a>
+                    <span>|</span>
+                    <a href="#" data-bind="click: $root.deleteTaskList">Delete</a>
+                </p>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</div>
+
+<!--DIVS FOR NEW/DETAIL/EDIT TASK LIST VIEWS-->
+<div id="divAddNewTaskList" hidden class="autoHideable">
+    <h2>Add New Task List</h2>
+    @{ Html.RenderPartial("_Create"); }
+</div>
+<div id="divTaskListDetails" hidden class="autoHideable" >
+
+</div>
+<div id="divEditTaskList" hidden class="autoHideable">
+
+</div>
+<!--DIVS FOR NEW/EDIT TASK VIEWS-->
+<div id="divAddNewTask" hidden class="autoHideable">
+
+</div>
+<div id="divEditTask" hidden class="autoHideable">
+
+</div>
+<!--DIVS FOR MODAL DETAIL VIEWS-->
+<div id="divModalDetails" data-bind="with: focusedTask" hidden class="autoHideable">
+TEST
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/knockout-2.1.0.js"></script>
+    <script type="text/javascript">
+        var currentUserId = @ViewBag.UserId; //Globally accessible variable to be used by knockout
+    </script>
+    <script type="text/javascript" src="~/Scripts/taskListsViewModel.js"></script>
+}
+
+<link href="../../Content/InventoryTaskLists.css" rel="stylesheet" type="text/css" />

@@ -1,0 +1,50 @@
+﻿<div class="taskListDetails" data-bind="with: focusedList">
+    <h2 data-bind="text: TaskName"></h2>
+    <div class="showCompletedToggle">
+        <input type="checkbox" id="chkShowCompletedTasks" data-bind="checked: $root.showCompletedTasks" /> View completed Tasks
+    </div>
+    <div class="focusedListSummary">
+        <span class="bracket">[ </span> Inventory Tasks: <span class="taskCount" data-bind="text: $root.inventoryTasks().length"></span>
+        <a href="#" data-bind="click: $root.getNewInventoryTaskForm">Add New</a><span class="bracket"> ]</span>
+    </div>
+    <div class="focusedListSummary">
+        <span class="bracket">[ </span> General Tasks: <span class="taskCount" data-bind="text: $root.generalTasks().length"></span>
+        <a href="#" data-bind="click: $root.getNewGeneralTaskForm">Add New</a><span class="bracket"> ]</span>
+    </div>
+    <div class="focusedListSummary">
+        <span class="bracket">[ </span> Status: <span class="listStatus" data-bind="text: IsComplete ? 'Done' : 'Pending'"></span><span class="bracket"> ]</span>
+    </div>
+    <div class="list-tasks" data-bind="if: $root.inventoryTasks().length > 0, visible: (($root.inventoryTasks().length > 0 && $root.showCompletedTasks()) || $root.incompleteInventoryTasks().length > 0)">        
+        <h3 data-bind="text: ($root.showCompletedTasks() ? 'All Inventory Tasks' : 'Pending Inventory Tasks')">Inventory Tasks</h3>
+        <div data-bind="foreach: $root.inventoryTasks()">
+            <div class="singleTask" data-bind="visible: ($root.showCompletedTasks() || !Completed)">
+                <p class="singleTaskName"><a href="#" data-bind="click: $root.getInventoryTaskDetailsForm, text: (Name.length > 20 ? Name.substr(0, 20) + '...' : Name)"></a></p>
+                <p class="singleTaskDescription"><label data-bind="text: (Description == null ? '' : (Description.length > 15 ? Description.substr(0, 15) + '...' : Description))"></label></p>
+                <p class="singleTaskStatus"><label>Status: <span data-bind="text: Completed ? 'Done' : 'Pending' "></span></label></p>
+                <p class="singleTaskActions">
+                    <a href="#" data-bind="click: $root.changeInventoryTaskStatus, text: Completed ? 'Un-complete' : 'Complete'"></a>
+                    <span>|</span>
+                    <a href="#" data-bind="click: $root.deleteInventoryTask">Delete</a>
+                </p>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+    <div class="list-tasks" data-bind="if: $root.generalTasks().length > 0, visible: (($root.generalTasks().length > 0 && $root.showCompletedTasks()) || $root.incompleteGeneralTasks().length > 0)">
+        <h3 data-bind="text: ($root.showCompletedTasks() ? 'All General Tasks' : 'Pending General Tasks')">General Tasks</h3>
+        <div data-bind="foreach: $root.generalTasks()">
+            <div class="singleTask" data-bind="visible: ($root.showCompletedTasks() || !Completed)">
+                <p class="singleTaskName"><a href="#" data-bind="click: $root.getGeneralTaskDetailsForm, text: (Name.length > 20 ? Name.substr(0, 20) + '...' : Name)"></a></p>
+                <p class="singleTaskDescription"><label data-bind="text: (Description == null ? '' : (Description.length > 15 ? Description.substr(0, 15) + '...' : Description))"></label></p>
+                <p class="singleTaskStatus"><label>Status: <span data-bind="text: Completed ? 'Done' : 'Pending' "></span></label></p>
+                <p class="singleTaskActions">
+                    <a href="#" data-bind="click: $root.changeGeneralTaskStatus, text: Completed ? 'Un-complete' : 'Complete'"></a>
+                    <span>|</span>
+                    <a href="#" data-bind="click: $root.deleteGeneralTask">Delete</a>
+                </p>
+            </div>
+        </div>
+        <div class="clear-fix"></div>
+    </div>
+</div> 
+<p><input type="button" value="Back To Task List" id="btnCloseDetails" /></p> 

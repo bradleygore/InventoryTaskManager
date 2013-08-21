@@ -1,0 +1,58 @@
+﻿@model InventoryMgr.Models.InventoryItem
+
+<h2>Add New Inventory Item</h2>
+@using (Html.BeginForm("", "api/InventoryItems", FormMethod.Post, new { id = "frmNewItem", @data_bind = "submit: createItem" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>InventoryItem</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ItemName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ItemName)
+            @Html.ValidationMessageFor(model => model.ItemName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ItemDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ItemDescription)
+            @Html.ValidationMessageFor(model => model.ItemDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InventoryCategoryId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.InventoryCategoryId, (IEnumerable<SelectListItem>)ViewBag.Categories, "-- Select --")
+            @Html.ValidationMessageFor(model => model.InventoryCategoryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ItemQuantity)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ItemQuantity, new { type = "number" })
+            @Html.ValidationMessageFor(model => model.ItemQuantity)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InventoryQtyMeasurementsId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.InventoryQtyMeasurementsId, (IEnumerable<SelectListItem>)ViewBag.Measurements, "-- Select --")
+            @Html.ValidationMessageFor(model => model.InventoryQtyMeasurementsId)
+        </div>
+
+        <input type="hidden" id="UserId" name="UserId" value="@ViewBag.UserId" />
+
+        <p>
+            <input type="submit" value="Create" />
+            <input type="button" value="Cancel" id="btnCancelNewInventory" />
+        </p>
+    </fieldset>
+}

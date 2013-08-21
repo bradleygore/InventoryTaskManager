@@ -1,0 +1,33 @@
+﻿@model InventoryMgr.Models.InventoryQtyMeasurements
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<h4>Edit Quantity Measurement</h4>
+<br />
+@using (Html.BeginForm("", "api/Measurements", FormMethod.Post, new { id = "frmEditMeasurement", @data_bind = "submit: updateMeasurement" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>InventoryQtyMeasurements</legend>
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.IsGlobal)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UnitOfMeasure)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UnitOfMeasure)
+            @Html.ValidationMessageFor(model => model.UnitOfMeasure)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+            <input type="button" value="Cancel" id="btnCancelMeasurementEdit" />
+        </p>
+    </fieldset>
+}

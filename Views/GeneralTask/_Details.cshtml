@@ -1,0 +1,19 @@
+﻿@model InventoryMgr.Models.TaskItem
+<div id="taskDetails">
+    <label class="itemHeaderMain">Task Info</label>
+    <div style="margin-left:15px;clear:both;margin-top:0;">
+        <label class="clearBoth"><span class="itemHeader">Name: </span><span> @Html.DisplayFor(model => model.Name) </span></label>
+        <label class="clearBoth"><span class="itemHeader">Description: </span><div class="textArea"> @Html.DisplayFor(model => model.Description) </div></label>
+        <label class="clearBoth" ><span class="itemHeader">Status: </span><span> @(Model.Completed ? "Completed" : "Not Completed") </span></label>
+        <label class="clearBoth"><span class="itemHeader">Created Date: </span><span> @Html.DisplayFor(model => model.TaskDate) </span></label>
+        @if (Model.Completed)
+        {
+            <label class="clearBoth"><span class="itemHeader">Completed Date: </span><span> @Html.DisplayFor(model => model.CompletedDate) </span></label>
+        }
+        <label class="clearBoth"><span class="itemHeader">Quantity: </span><span>@Html.DisplayFor(model => model.Quantity)</span></label>
+    </div>
+    <p>
+        <input type="button" value="Edit" data-bind="click: $root.getGeneralTaskEditForm" />
+        <input type="button" value="Close" onclick="ShowTaskListDetails()" />
+    </p>
+</div>

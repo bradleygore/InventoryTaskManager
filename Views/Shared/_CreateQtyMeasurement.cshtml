@@ -1,0 +1,26 @@
+﻿@model InventoryMgr.Models.InventoryQtyMeasurements
+
+@using (Html.BeginForm("", "api/Measurements", FormMethod.Post, new { id = "frmCreateMeasurement", @data_bind = "submit: createMeasurement" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>InventoryQtyMeasurements</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UnitOfMeasure)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UnitOfMeasure)
+            @Html.ValidationMessageFor(model => model.UnitOfMeasure)
+        </div>
+        
+        <input type="hidden" id="UserId" name="UserId" value="@ViewBag.UserId" />
+        <input type="hidden" id="IsGlobal" name="IsGlobal" value="false" />
+        
+        <p>
+            <input type="submit" value="Create" />
+            <input type="button" value="Cancel" id="btnCancelQtyMeasurementCreate" />
+        </p>
+    </fieldset>
+}

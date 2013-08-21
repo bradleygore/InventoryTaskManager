@@ -1,0 +1,85 @@
+﻿@model InventoryMgr.Models.InventoryTaskItem
+
+<div id="taskEdit">
+@using (Html.BeginForm("", "api/InventoryTasks", FormMethod.Post, new { id = "frmEditInventoryTask", @data_bind = "submit: $root.updateInventoryTask" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>InventoryTaskItem</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InventoryItemId, new { Text = "Inventory Item" })
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.InventoryItemId, new SelectList(ViewBag.InventoryItems, "Value", "Text", "Selected"))
+            @Html.ValidationMessageFor(model => model.InventoryItemId)
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Completed)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Completed)
+            @Html.ValidationMessageFor(model => model.Completed)
+        </div>
+            
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TaskDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TaskDate)
+            @Html.ValidationMessageFor(model => model.TaskDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompletedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompletedDate)
+            @Html.ValidationMessageFor(model => model.CompletedDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Quantity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Quantity)
+            @Html.ValidationMessageFor(model => model.Quantity)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TaskListId, new { Text = "Task List" })
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.TaskListId, new SelectList(ViewBag.TaskLists, "Value", "Text", "Selected"))
+            @Html.ValidationMessageFor(model => model.TaskListId)
+        </div>
+
+        @Html.HiddenFor(model => model.UserId)
+
+        <p>
+            <input type="submit" value="Save" />
+            <input type="button" value="Cancel" onclick="ShowTaskListDetails()" />
+        </p>
+    </fieldset>
+}
+</div>
